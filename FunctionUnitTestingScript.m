@@ -73,13 +73,23 @@ clear all;
 clc;
 
 image = imread('fabric.png');
-image = rgb2gray(image);
+%image = rgb2gray(image);
 
 ShowHistogram(image);
 
 histogram = CalculateHistogram(image);
 
 %% (e) Equalize the histogram.
+
+image = imread('fabric.png');
+%image = rgb2gray(image);
+
+image = EqualizeHistogram(image);
+
+imshow(image);
+
+%% (f) Apply morphological operations (Dilate, Erode, Open, Close).
+
 
 
 
