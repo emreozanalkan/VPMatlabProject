@@ -3,7 +3,7 @@ close all;
 clear all;
 clc;
 return;
-%% Add Salt And Pepper Noise Test
+%% a) Add salt and pepper noise.
 
 image = imread('fabric.png'); % eight.tif
 
@@ -15,7 +15,7 @@ f = figure('Name','Salt And Pepper Noise', 'NumberTitle', 'off');
 
 imshow(image);
 
-%% Show a logo at a corner of the input (ROI)
+%% (b) Show a logo at a corner of the input (ROI).
 % http://www.mathworks.com/help/images/ref/imadd.html
 % https://www.youtube.com/watch?v=avrGiTMWWiE
 % http://myclassbook.wordpress.com/2013/05/21/addition-of-two-images-using-matlab-image-processing/
@@ -42,7 +42,7 @@ image = AddLogo(image, logo, x, y, logoScale);
 
 imshow(image);
 
-%% Convert to a new colorspace.
+%% (c) Convert to a new colorspace.
 % 'RGB'	R'G'B' Red Green Blue (ITU-R BT.709 gamma-corrected)
 % 'YPbPr'	Luma (ITU-R BT.601) + Chroma
 % 'YCbCr'/'YCC'	Luma + Chroma ("digitized" version of Y'PbPr)
@@ -67,8 +67,19 @@ image = ChangeColorSpace(image, srcColorSpace, destColorSpace);
 
 imshow(image);
 
+%% (d) Compute the histogram.
+close all;
+clear all;
+clc;
 
+image = imread('fabric.png');
+image = rgb2gray(image);
 
+ShowHistogram(image);
+
+histogram = CalculateHistogram(image);
+
+%% (e) Equalize the histogram.
 
 
 
