@@ -1,5 +1,8 @@
 % Unit Testing for Functions
-
+close all;
+clear all;
+clc;
+return;
 %% Add Salt And Pepper Noise Test
 
 image = imread('fabric.png'); % eight.tif
@@ -39,5 +42,43 @@ image = AddLogo(image, logo, x, y, logoScale);
 
 imshow(image);
 
+%% Convert to a new colorspace.
+% 'RGB'	R'G'B' Red Green Blue (ITU-R BT.709 gamma-corrected)
+% 'YPbPr'	Luma (ITU-R BT.601) + Chroma
+% 'YCbCr'/'YCC'	Luma + Chroma ("digitized" version of Y'PbPr)
+% 'YUV'	NTSC PAL Y'UV Luma + Chroma
+% 'YIQ'	NTSC Y'IQ Luma + Chroma
+% 'YDbDr'	SECAM Luma + Chroma
+% 'JPEGYCbCr'	JPEG-Y'CbCr Luma + Chroma
+% 'HSV'/'HSB'	Hue Saturation Value/Brightness
+% 'HSL'/'HLS'/'HSI'	Hue Saturation Luminance/Intensity
+% 'XYZ'	CIE XYZ
+% 'Lab'	CIE L*a*b* (CIELAB)
+% 'Luv'	CIE L*u*v* (CIELUV)
+% 'Lch'	CIE L*ch (CIELCH)
 
-%%
+image = imread('fabric.png');
+
+srcColorSpace = 'RGB';
+
+destColorSpace = 'HSV';
+
+image = ChangeColorSpace(image, srcColorSpace, destColorSpace);
+
+imshow(image);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
