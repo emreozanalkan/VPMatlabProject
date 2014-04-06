@@ -112,11 +112,29 @@ image= ApplyMorphology(image, 'close', 'ball', 15);
 
 imshow(image);
 
+%% (g) Blur.
+% average   - Averaging filter
+% disk      - Circular averaging filter (pillbox)
+% gaussian  - Gaussian lowpass filter
+% motion    - Approximates the linear motion of a camera
+% h = fspecial('average', hsize) returns an averaging filter h of size hsize. The argument hsize can be a vector specifying the number of rows and columns in h, or it can be a scalar, in which case h is a square matrix. The default value for hsize is [3 3].
+% h = fspecial('disk', radius) returns a circular averaging filter (pillbox) within the square matrix of size 2*radius+1. The default radius is 5.
+% h = fspecial('gaussian', hsize, sigma) returns a rotationally symmetric Gaussian lowpass filter of size hsize with standard deviation sigma (positive). hsize can be a vector specifying the number of rows and columns in h, or it can be a scalar, in which case h is a square matrix. The default value for hsize is [3 3]; the default value for sigma is 0.5.
+% h = fspecial('motion', len, theta) returns a filter to approximate, once convolved with an image, the linear motion of a camera by len pixels, with an angle of theta degrees in a counterclockwise direction. The filter becomes a vector for horizontal and vertical motions. The default len is 9 and the default theta is 0, which corresponds to a horizontal motion of nine pixels.
+% h = fspecial('average', [11 11]);
+% h = fspecial('disk', 11);
+% h = fspecial('gaussian', [13 13], 3);
+% h = fspecial('motion', 20, 0);
 
 
+image = imread('fabric.png');
 
+% image = AddBlur(image);
+% image = AddBlur(image, 'disk');
+% image = AddBlur(image, 'gaussian', 13);
+image = AddBlur(image, 'motion', 20, 45);
 
-
+imshow(image);
 
 
 
