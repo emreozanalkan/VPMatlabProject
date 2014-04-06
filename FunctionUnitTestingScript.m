@@ -90,7 +90,27 @@ imshow(image);
 
 %% (f) Apply morphological operations (Dilate, Erode, Open, Close).
 
+image = imread('fabric.png');
 
+% se1 = strel('square',11)      % 11-by-11 square
+% se2 = strel('line',10,45)     % length 10, angle 45 degrees
+% se3 = strel('disk',15)        % disk, radius 15
+% se4 = strel('ball',15,5)      % ball, radius 15, height 5
+% se = strel('disk', 2);
+% image = imdilate(image, se);
+% image = imerode(image, se);
+% image = imopen(image, se);
+% image = imclose(image, se);
+% image = imdilate(image, se);
+
+
+% image = ApplyMorphology(image);
+% image = ApplyMorphology(image, 'erode');
+% image = ApplyMorphology(image, 'erode', 'line');
+% image= ApplyMorphology(image, 'open', 'disk', 5);
+image= ApplyMorphology(image, 'close', 'ball', 15);
+
+imshow(image);
 
 
 
