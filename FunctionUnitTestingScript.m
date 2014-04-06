@@ -163,7 +163,11 @@ imshow(image);
 
 %% i) Sharpen by applying a kernel.
 
+image = imread('fabric.png');
 
+image = ApplySharpen(image);
+
+imshow(image);
 
 
 
