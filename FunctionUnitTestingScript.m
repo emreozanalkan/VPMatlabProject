@@ -156,6 +156,14 @@ imshow(image);
 
 image = imread('fabric.png');
 
+% image = ApplySobel(image);
+image = ApplyLaplacian(image);
+
+imshow(image);
+
+%% i) Sharpen by applying a kernel.
+
+
 
 
 
