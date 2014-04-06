@@ -55,6 +55,8 @@ if strcmp(structuringElement, 'square') || strcmp(structuringElement, 'disk')
     se = strel(structuringElement, param1);
 elseif strcmp(structuringElement, 'line') || strcmp(structuringElement, 'ball')
     se = strel(structuringElement, param1, param2);
+else
+    error('Wrong structuring element type.');
 end
 
 
@@ -70,7 +72,6 @@ elseif strcmp(method, 'close')
 else
     error('Wrong morphological operation type.');
 end
-
 
 
 end

@@ -109,6 +109,10 @@ image = imread('fabric.png');
 % image = imclose(image, se);
 % image = imdilate(image, se);
 
+% image = ApplyDilate(image);
+% image = ApplyErode(image);
+% image = ApplyOpen(image);
+% image = ApplyClose(image);
 
 % image = ApplyMorphology(image);
 % image = ApplyMorphology(image, 'erode');
@@ -134,6 +138,11 @@ imshow(image);
 
 
 image = imread('fabric.png');
+
+% image = AddAverageBlur(image);
+% image = AddDiskBlur(image);
+% image = AddGaussianBlur(image);
+% image = AddMotionBlur(image);
 
 % image = AddBlur(image);
 % image = AddBlur(image, 'disk');
