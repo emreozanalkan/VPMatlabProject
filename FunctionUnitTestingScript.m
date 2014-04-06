@@ -169,6 +169,19 @@ image = ApplySharpen(image);
 
 imshow(image);
 
+%% (j) Edge detection using Canny.
+
+image = imread('fabric.png');
+%image = rgb2gray(image);
+
+threshold = 0.1; % default []
+sigma = sqrt(16); % default 2
+
+image = ApplyCannyEdge(image);
+%image = ApplyCannyEdge(image, threshold, sigma);
+
+imshow(image);
+
 
 
 
