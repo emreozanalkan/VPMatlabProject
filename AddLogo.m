@@ -1,4 +1,4 @@
-function [ image ] = AddLogo( image, logo, x, y, logoScale )
+function [ image ] = AddLogo( image, logo, x, y, logoWeight, logoScale )
 %ADDLOGO Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -7,11 +7,16 @@ if nargin < 2
 elseif nargin < 3
     x = 1;
     y = 1;
+    logoWeight = 1;
     logoScale = 0.5;
 elseif nargin < 4
     y = 1;
+    logoWeight = 1;
     logoScale = 0.5;
 elseif nargin < 5
+    logoWeight = 1;
+    logoScale = 0.5;
+elseif nargin < 6
     logoScale = 0.5;
 end
 
@@ -45,7 +50,7 @@ if iD == 1
         
         for jj = 1 : lC
             
-            image(x + ii, y + jj) = logo(ii, jj);
+            image(x + ii, y + jj) = ((1 - logoWeight) * image(x + ii, y + jj)) + ((logoWeight) * logo(ii, jj));
             
         end
         
@@ -57,9 +62,9 @@ else
         
         for jj = 1 : lC
             
-            image(x + ii, y + jj, 1) = logo(ii, jj, 1);
-            image(x + ii, y + jj, 2) = logo(ii, jj, 2);
-            image(x + ii, y + jj, 3) = logo(ii, jj, 3);
+            image(x + ii, y + jj, 1) = ((1 - logoWeight) * image(x + ii, y + jj, 1)) + ((logoWeight) * logo(ii, jj, 1));
+            image(x + ii, y + jj, 2) = ((1 - logoWeight) * image(x + ii, y + jj, 2)) + ((logoWeight) * logo(ii, jj, 2));
+            image(x + ii, y + jj, 3) = ((1 - logoWeight) * image(x + ii, y + jj, 3)) + ((logoWeight) * logo(ii, jj, 3));
             
         end
         

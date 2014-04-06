@@ -36,9 +36,15 @@ imshow(image);
 x = round(x);
 y = round(y);
 
+logoWeight = 0.7;
 logoScale = 0.5;
 
-image = AddLogo(image, logo, x, y, logoScale);
+% image = AddLogo(image, logo);
+% image = AddLogo(image, logo, x);
+% image = AddLogo(image, logo, x, y);
+% image = AddLogo(image, logo, x, y, logoWeight);
+
+image = AddLogo(image, logo, x, y, logoWeight, logoScale);
 
 imshow(image);
 
@@ -135,6 +141,12 @@ image = imread('fabric.png');
 image = AddBlur(image, 'motion', 20, 45);
 
 imshow(image);
+
+
+%% h) Apply Sobel and Laplacian operators.
+
+image = imread('fabric.png');
+
 
 
 
