@@ -182,8 +182,40 @@ image = ApplyCannyEdge(image);
 
 imshow(image);
 
+%% k) Extract lines and circles using Hough transform.
+% http://www.mathworks.com/help/images/ref/hough.html
+% http://www.mathworks.com/help/images/ref/houghlines.html
+% http://www.mathworks.com/help/images/ref/imfindcircles.html
+% Hough                          - Hough transform class
+% hough                          - Hough transform.
+% houghlines                     - Extract line segments based on Hough transform.
+% houghpeaks                     - Identify peaks in Hough transform.
+% imfindcircles                  - Find circles using Circular Hough Transform.
+
+close all;
+clear all;
+clc;
+
+% LINES
+%image = imread('fabric.png');
+%image = imread('circuit.tif');
+
+% image = imread('/Users/emreozanalkan/Desktop/barcode.jpg');
+
+% imshow(image);
+% 
+% % lines = CalculateHoughLines(image);
+% 
+% maxLineCount = 100;
+% 
+% ShowHoughLines(image, maxLineCount);
 
 
+% CIRCLES
+% radius or radius range % maybe minRadius maxRadius ?
+% 
+image = imread('coins.png');
 
+imshow(image);
 
-
+ShowHoughCircles(image);
