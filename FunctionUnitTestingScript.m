@@ -257,3 +257,28 @@ imshow(image);
 % ShowShapeDescriptors(image); % Rectangle
 ShowShapeDescriptors(image, true); % Circle
 
+%% (n) Extract corners using Harris and apply non-maximal suppression.
+% http://www.mathworks.com/help/vision/ref/detectharrisfeatures.html
+% http://www.mathworks.com/help/images/ref/corner.html
+% http://www.csse.uwa.edu.au/~pk/research/matlabfns/Spatial/harris.m
+% https://github.com/gokhanozbulak/Harris-Detector
+% http://matlabcorner.wordpress.com/2012/11/17/does-harris-corner-detector-finds-corners-intuitive-explanation-to-harris-corner-detector/
+% http://areshmatlab.blogspot.fr/2010/04/corner-detection-using-harris.html
+
+close all;
+clear all;
+clc;
+
+image = imread('fabric.png');
+
+imshow(image);
+
+maxCornerLimit = 10000;
+
+% ShowHarrisCorners(image, maxCornerLimit);
+
+ShowHarrisCorners(image);
+
+
+
+
