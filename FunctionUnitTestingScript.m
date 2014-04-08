@@ -197,28 +197,28 @@ clear all;
 clc;
 
 % LINES
-%image = imread('fabric.png');
-%image = imread('circuit.tif');
+% image = imread('fabric.png');
+% image = imread('circuit.tif');
 
-% image = imread('/Users/emreozanalkan/Desktop/barcode.jpg');
-
-% imshow(image);
-% 
-% % lines = CalculateHoughLines(image);
-% 
-% maxLineCount = 100;
-% 
-% ShowHoughLines(image, maxLineCount);
-
-
-% CIRCLES
-% radius or radius range % maybe minRadius maxRadius ?
-% 
-image = imread('coins.png');
+image = imread('/Users/emreozanalkan/Desktop/barcode.jpg');
 
 imshow(image);
 
-ShowHoughCircles(image);
+% lines = CalculateHoughLines(image);
+
+maxLineCount = 100;
+
+ShowHoughLines(image, maxLineCount);
+
+
+% % CIRCLES
+% % radius or radius range % maybe minRadius maxRadius ?
+% % 
+% image = imread('tire.tif');
+% 
+% imshow(image);
+% 
+% ShowHoughCircles(image);
 
 %% (l) Find contours of connected objects and draw them.
 
@@ -236,33 +236,24 @@ ShowContours(image, contourLevels);
 
 %contour(image);
 
-%% (m) 
+%% (m) Apply components' shape descriptors (bounding box, minimum en- closing circle).
 % http://stackoverflow.com/questions/15251045/matlab-find-the-contour-and-straighten-a-nearly-rectangular-image
+% http://stackoverflow.com/questions/15301626/choosing-isolines-from-matlab-contour-function
+% http://www.mathworks.com/matlabcentral/answers/87597-rectangle-around-the-object-bounding-box
+% http://www.mathworks.com/help/images/ref/regionprops.html
+% http://stackoverflow.com/questions/10140068/bounding-box-using-matlab-for-the-image
+% http://stackoverflow.com/questions/14447813/bounding-box-in-matlab-regionprops
+% http://nf.nci.org.au/facilities/software/Matlab/toolbox/images/regionprops.html
 
+imtool close all;
+close all;
+clear all;
+clc;
 
+image = imread('fabric.png');
 
+imshow(image);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% ShowShapeDescriptors(image); % Rectangle
+ShowShapeDescriptors(image, true); % Circle
 
