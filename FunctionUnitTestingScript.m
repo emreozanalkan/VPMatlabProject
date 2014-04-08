@@ -219,3 +219,50 @@ image = imread('coins.png');
 imshow(image);
 
 ShowHoughCircles(image);
+
+%% (l) Find contours of connected objects and draw them.
+
+close all;
+clear all;
+clc;
+
+image = imread('fabric.png');
+
+imshow(image);
+
+contourLevels = 1;
+
+ShowContours(image, contourLevels);
+
+%contour(image);
+
+%% (m) 
+% http://stackoverflow.com/questions/15251045/matlab-find-the-contour-and-straighten-a-nearly-rectangular-image
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
