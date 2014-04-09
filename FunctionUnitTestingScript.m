@@ -345,11 +345,28 @@ image2 = imread('AT3_1m4_02.tif');
 
 ShowMatches(image1, image2);
 
+%% (q) Calibrate the attached camera,
+
+try
+ocam_calib;
+catch
+    display('Please be sure OCamCalib toolbox is installed and on the path');
+end
+
+% (r) Attach two cameras (or take two images from the same camera after moving the camera to a new position), compute the fundamental matrix using: (only one of the following in MATLAB project, and all of them in the OpenCV project)
 
 
+image1 = imread('AT3_1m4_01.tif');
+image2 = imread('AT3_1m4_02.tif');
 
+F = ComputeFundementalMatrix(image1, image2);
 
+%% (s) Draw the epipolar lines and show the epipole in the two images.
 
+image1 = imread('AT3_1m4_01.tif');
+image2 = imread('AT3_1m4_02.tif');
 
+ShowEpipolarLines(image1, image2);
 
+%%
 
