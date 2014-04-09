@@ -279,6 +279,64 @@ maxCornerLimit = 10000;
 
 ShowHarrisCorners(image);
 
+%% (o) Extract FAST, SURF, and SIFT
+
+image = imread('fabric.png');
+
+% % FAST
+% % http://www.edwardrosten.com/work/fast.html
+% % http://www.mathworks.com/matlabcentral/fileexchange/13006-fast-corner-detector
+% % http://www.mathworks.com/help/vision/feature-detection-extraction-and-matching.html
+% % http://www.mathworks.com/help/vision/ref/detectharrisfeatures.html#btolyhy-7
+% % http://matlabtricks.com/post-27/experiment-on-the-fast-corner-detector
+% % http://compgroups.net/comp.soft-sys.matlab/fast-corner-detector/387318
+% % http://compgroups.net/comp.soft-sys.matlab/fast-corner-detector/387318
+% % http://matlabcorner.wordpress.com/2012/11/17/does-harris-corner-detector-finds-corners-intuitive-explanation-to-harris-corner-detector/
+% % http://www.mathworks.com/help/vision/ref/detectfastfeatures.html
+% % http://www.mathworks.com/help/vision/ref/detectsurffeatures.html
+% % http://stackoverflow.com/questions/9211916/sift-implementation-in-matlab-tutorial
+% % http://www.mathworks.com/matlabcentral/fileexchange/43723-sift-scale-invariant-feature-transform-algorithm
+% 
+% %imageGray = rgb2gray(image);
+% 
+% %corners = ExtractFAST(image);
+% 
+% imshow(image);
+% 
+% %hold on;
+% 
+% %plot(corners);
+% 
+% % ShowFAST(image, 10);
+% ShowFAST(image);
+
+
+% SURF
+
+% imshow(image);
+% 
+% hold on;
+% 
+% ShowSURF(image, 10);
+
+
+% SIFT
+% http://www.mathworks.com/matlabcentral/fileexchange/43723-sift-scale-invariant-feature-transform-algorithm
+% http://stackoverflow.com/questions/9211916/sift-implementation-in-matlab-tutorial
+% http://robots.stanford.edu/cs223b04/project9.html
+% http://www.mathworks.com/matlabcentral/fileexchange/18441-siftgpu-sift-enabled-on-gpu
+
+imshow(image);
+
+image = rgb2gray(image);
+% SIFT NOT IMPLEMENTED
+%isift(image);
+
+
+
+
+
+
 
 
 
