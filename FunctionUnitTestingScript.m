@@ -333,6 +333,19 @@ image = rgb2gray(image);
 %isift(image);
 
 
+%% p) Find matches between two different views.
+
+image1 = imread('AT3_1m4_01.tif');
+image2 = imread('AT3_1m4_02.tif');
+%image2 = imread('AT3_1m4_03.tif');
+%image2 = imread('AT3_1m4_04.tif');
+%image2 = imread('AT3_1m4_05.tif');
+%image2 = imread('AT3_1m4_06.tif');
+%image2 = imread('fabric.png');
+
+ShowMatches(image1, image2);
+
+
 
 
 
