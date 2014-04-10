@@ -350,10 +350,10 @@ ShowMatches(image1, image2);
 try
 ocam_calib;
 catch
-    display('Please be sure OCamCalib toolbox is installed and on the path');
+    error('Please be sure OCamCalib toolbox is installed and on the path');
 end
 
-% (r) Attach two cameras (or take two images from the same camera after moving the camera to a new position), compute the fundamental matrix using: (only one of the following in MATLAB project, and all of them in the OpenCV project)
+%% (r) Attach two cameras (or take two images from the same camera after moving the camera to a new position), compute the fundamental matrix using: (only one of the following in MATLAB project, and all of them in the OpenCV project)
 
 
 image1 = imread('AT3_1m4_01.tif');
@@ -368,5 +368,19 @@ image2 = imread('AT3_1m4_02.tif');
 
 ShowEpipolarLines(image1, image2);
 
-%%
+%% 
+% (t) Compute the homography between two images (capture an image then apply a pure rotation to the camera, then capture another im- age).
+% (u) Add the two images connected by the found homography in one image (mosaic).
+% Got help from Abinash Pant. Mostly his code put into 'ShowHomography'. He
+% showed and teached me how to homography in Matlab.
+
+% image1 = imread('AT3_1m4_01.tif');
+% image2 = imread('AT3_1m4_02.tif');
+
+image1 = imread('/Users/emreozanalkan/Desktop/parliament1.bmp');
+image2 = imread('/Users/emreozanalkan/Desktop/parliament2.bmp');
+%image2 = imread('/Users/emreozanalkan/Desktop/parliament3.bmp');
+
+ShowHomography(image1, image2);
+
 
