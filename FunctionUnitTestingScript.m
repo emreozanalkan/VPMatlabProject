@@ -329,7 +329,7 @@ image = imread('fabric.png');
 imshow(image);
 
 image = rgb2gray(image);
-% SIFT NOT IMPLEMENTED
+% SIFT NOT IMPLEMENTED DUE TO PATENT ISSUES
 %isift(image);
 
 
@@ -347,11 +347,7 @@ ShowMatches(image1, image2);
 
 %% (q) Calibrate the attached camera,
 
-try
-ocam_calib;
-catch
-    error('Please be sure OCamCalib toolbox is installed and on the path');
-end
+CameraCalibration();
 
 %% (r) Attach two cameras (or take two images from the same camera after moving the camera to a new position), compute the fundamental matrix using: (only one of the following in MATLAB project, and all of them in the OpenCV project)
 
