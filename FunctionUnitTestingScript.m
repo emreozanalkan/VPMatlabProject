@@ -377,8 +377,8 @@ ShowEpipolarLines(image1, image2);
 % image1 = imread('AT3_1m4_01.tif');
 % image2 = imread('AT3_1m4_02.tif');
 
-image1 = imread('/Users/emreozanalkan/Desktop/parliament1.bmp');
-image2 = imread('/Users/emreozanalkan/Desktop/parliament2.bmp');
+image1 = imread('/Users/emreozanalkan/Desktop/parliament2.bmp');
+image2 = imread('/Users/emreozanalkan/Desktop/parliament3.bmp');
 %image2 = imread('/Users/emreozanalkan/Desktop/parliament3.bmp');
 
 ShowHomography(image1, image2);
