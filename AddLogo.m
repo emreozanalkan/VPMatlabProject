@@ -3,7 +3,7 @@ function [ image ] = AddLogo( image, logo, x, y, logoWeight, logoScale )
 %   Detailed explanation goes here
 
 if nargin < 2
-    error('Too few arguments.');
+    error('AddLogo: Too few arguments.');
 elseif nargin < 3
     x = 1;
     y = 1;
@@ -26,14 +26,14 @@ logo = imresize(logo , logoScale);
 [lR, lC, lD] = size(logo);
 
 if iD ~= lD
-    error('Image dimension mismatch.');
+    error('AddLogo: Image dimension mismatch.');
 end
 
 x = x - 1;
 y = y - 1;
 
 if lR + x > iR || lC + y > iC
-    error('Logo can not fit into image.');
+    error('AddLogo: Logo can not fit into image.');
 end
 
 if isa(logo, 'logical')

@@ -26,7 +26,8 @@ imshow(image);
 image = imread('fabric.png');
 %image = rgb2gray(image);
 
-logo = imread('football.jpg');
+%logo = imread('football.jpg');
+logo = imread('/Users/emreozanalkan/Desktop/3241_Code/3241OS_images/images/logo.bmp');
 %logo = imread('logo.tif');
 
 imshow(image);
@@ -177,7 +178,7 @@ image = imread('fabric.png');
 threshold = 0.1; % default []
 sigma = sqrt(16); % default 2
 
-image = ApplyCannyEdge(image);
+image = ApplyCannyEdge(image, 1);
 %image = ApplyCannyEdge(image, threshold, sigma);
 
 imshow(image);
