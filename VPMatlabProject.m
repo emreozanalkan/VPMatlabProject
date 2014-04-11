@@ -22,7 +22,7 @@ function varargout = VPMatlabProject(varargin)
 
 % Edit the above text to modify the response to help VPMatlabProject
 
-% Last Modified by GUIDE v2.5 11-Apr-2014 16:14:02
+% Last Modified by GUIDE v2.5 11-Apr-2014 17:00:48
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1350,3 +1350,29 @@ if isempty(homographyFirstImage) || isempty(homographySecondImage)
 end
 
 ShowHomography(homographyFirstImage, homographySecondImage);
+
+
+% --- Executes when user attempts to close figure1.
+function figure1_CloseRequestFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Clean up everything
+try
+    display('Cleaning up...');
+    
+    if ~isempty(handles.myTimer)
+        stop(handles.myTimer);
+        delete(handles.myTimer);
+    end
+    if ~isempty(handles.myVideo)
+        stop(handles.myVideo);
+        delete(handles.myVideo);
+    end
+catch
+    %display('Error occured while cleaning up');
+end
+
+% Hint: delete(hObject) closes the figure
+delete(hObject);
