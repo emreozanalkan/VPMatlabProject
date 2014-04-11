@@ -56,7 +56,7 @@ blend = vision.AlphaBlender('Operation', 'Binary mask', 'MaskSource', 'Input por
 
 mosaic = step(blend, tao, ooo, mask);
 
-imshow(mosaic);
+figure, imshow(mosaic);
 
 % -- Abinash Pant --
 

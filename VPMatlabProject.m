@@ -22,7 +22,7 @@ function varargout = VPMatlabProject(varargin)
 
 % Edit the above text to modify the response to help VPMatlabProject
 
-% Last Modified by GUIDE v2.5 11-Apr-2014 15:30:45
+% Last Modified by GUIDE v2.5 11-Apr-2014 16:14:02
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -149,6 +149,26 @@ global extractSURF;
 global surfMostStrongestCount;
 extractSURF = false;
 surfMostStrongestCount = 10;
+% Find Matches
+global findMatchesFirstImage;
+global findMatchesSecondImage;
+findMatchesFirstImage = [];
+findMatchesSecondImage = [];
+% Camera Calibration
+global fundementalMatrixFirstImage;
+global fundementalMatrixSecondImage;
+fundementalMatrixFirstImage = [];
+fundementalMatrixSecondImage = [];
+% Draw Epipolar Lines
+global epipolarLinesFirstImage;
+global epipolarLinesSecondImage;
+epipolarLinesFirstImage = [];
+epipolarLinesSecondImage = [];
+% Compute Homography
+global homographyFirstImage;
+global homographySecondImage;
+homographyFirstImage = [];
+homographySecondImage = [];
 
 % UIWAIT makes VPMatlabProject wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
@@ -1117,3 +1137,216 @@ function sliderSURFMostStrongestCount_CreateFcn(hObject, eventdata, handles)
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
+
+
+% --- Executes on button press in pushbuttonFindMatchesFirstImage.
+function pushbuttonFindMatchesFirstImage_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonFindMatchesFirstImage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+[filename, isCanceled] = imgetfile;
+
+if isCanceled
+    return;
+end
+
+global findMatchesFirstImage;
+
+findMatchesFirstImage = imread(filename);
+
+
+% --- Executes on button press in pushbuttonFindMatchesSecondImage.
+function pushbuttonFindMatchesSecondImage_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonFindMatchesSecondImage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+[filename, isCanceled] = imgetfile;
+
+if isCanceled
+    return;
+end
+
+global findMatchesSecondImage;
+
+findMatchesSecondImage = imread(filename);
+
+
+% --- Executes on button press in pushbuttonFindMatches.
+function pushbuttonFindMatches_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonFindMatches (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+global findMatchesFirstImage;
+global findMatchesSecondImage;
+
+if isempty(findMatchesFirstImage) || isempty(findMatchesSecondImage)
+    msgbox('First or Second match image is empty.');
+    return;
+end
+
+ShowMatches(findMatchesFirstImage, findMatchesSecondImage);
+
+
+% --- Executes on button press in pushbuttonCalibrateCamera.
+function pushbuttonCalibrateCamera_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonCalibrateCamera (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+CameraCalibration();
+
+% --- Executes on button press in pushbuttonFundementalMatrixFirstImage.
+function pushbuttonFundementalMatrixFirstImage_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonFundementalMatrixFirstImage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+[filename, isCanceled] = imgetfile;
+
+if isCanceled
+    return;
+end
+
+global fundementalMatrixFirstImage;
+
+fundementalMatrixFirstImage = imread(filename);
+
+
+% --- Executes on button press in pushbuttonFundementalMatrixSecondImage.
+function pushbuttonFundementalMatrixSecondImage_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonFundementalMatrixSecondImage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+[filename, isCanceled] = imgetfile;
+
+if isCanceled
+    return;
+end
+
+global fundementalMatrixSecondImage;
+
+fundementalMatrixSecondImage = imread(filename);
+
+
+% --- Executes on button press in pushbuttonCalculateFundementalMatrix.
+function pushbuttonCalculateFundementalMatrix_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonCalculateFundementalMatrix (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+global fundementalMatrixFirstImage;
+global fundementalMatrixSecondImage;
+
+if isempty(fundementalMatrixFirstImage) || isempty(fundementalMatrixSecondImage)
+    msgbox('First or Second match image is empty.');
+    return;
+end
+
+F = ComputeFundementalMatrix(fundementalMatrixFirstImage, fundementalMatrixSecondImage);
+
+display(F);
+
+
+% --- Executes on button press in pushbuttonDrawEpipolarLinesFirstImage.
+function pushbuttonDrawEpipolarLinesFirstImage_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonDrawEpipolarLinesFirstImage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+[filename, isCanceled] = imgetfile;
+
+if isCanceled
+    return;
+end
+
+global epipolarLinesFirstImage;
+
+epipolarLinesFirstImage = imread(filename);
+
+% --- Executes on button press in pushbuttonDrawEpipolarLinesSecondImage.
+function pushbuttonDrawEpipolarLinesSecondImage_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonDrawEpipolarLinesSecondImage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+[filename, isCanceled] = imgetfile;
+
+if isCanceled
+    return;
+end
+
+global epipolarLinesSecondImage;
+
+epipolarLinesSecondImage = imread(filename);
+
+
+% --- Executes on button press in pushbuttonDrawEpipolarLines.
+function pushbuttonDrawEpipolarLines_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonDrawEpipolarLines (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+global epipolarLinesFirstImage;
+global epipolarLinesSecondImage;
+
+if isempty(epipolarLinesFirstImage) || isempty(epipolarLinesSecondImage)
+    msgbox('First or Second match image is empty.');
+    return;
+end
+
+ShowEpipolarLines(epipolarLinesFirstImage, epipolarLinesSecondImage);
+
+
+% --- Executes on button press in pushbuttonHomographyFirstImage.
+function pushbuttonHomographyFirstImage_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonHomographyFirstImage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+[filename, isCanceled] = imgetfile;
+
+if isCanceled
+    return;
+end
+
+global homographyFirstImage;
+
+homographyFirstImage = imread(filename);
+
+
+% --- Executes on button press in pushbuttonHomographySecondImage.
+function pushbuttonHomographySecondImage_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonHomographySecondImage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+[filename, isCanceled] = imgetfile;
+
+if isCanceled
+    return;
+end
+
+global homographySecondImage;
+
+homographySecondImage = imread(filename);
+
+
+% --- Executes on button press in pushbuttonComputeHomography.
+function pushbuttonComputeHomography_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbuttonComputeHomography (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+global homographyFirstImage;
+global homographySecondImage;
+
+if isempty(homographyFirstImage) || isempty(homographySecondImage)
+    msgbox('First or Second match image is empty.');
+    return;
+end
+
+ShowHomography(homographyFirstImage, homographySecondImage);

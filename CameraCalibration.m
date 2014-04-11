@@ -5,7 +5,7 @@ function CameraCalibration()
 try
     ocam_calib;
 catch
-    error('Please be sure OCamCalib toolbox is installed and on the path');
+    warning('Please be sure OCamCalib toolbox is installed and on the path');
 end
 
 end
